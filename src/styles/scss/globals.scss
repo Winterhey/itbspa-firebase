@@ -1,0 +1,53 @@
+@import 'tailwind.scss';
+@import 'colors.scss';
+
+@import 'fonts';
+
+* {
+  --scrollbar-width: 0px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: $light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::selection {
+  background-color: $firebase-orange;
+  color: $light;
+}
+
+html,
+body,
+#__next {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: $light;
+
+  --font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-family);
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,15 @@
+{
+    "Global": {
+        "Name": "IT-BSPA Firebase",
+        "Meta": {
+            "Title": "IT-BSPA Firebase",
+            "Description": "A Web-Application for IT-BSPA 12b to showcase Firebase.",
+            "Keywords": "Firebase, IT-BSPA, 12b",
+            "Author": "Amanda Santana Wieser, Milarg Jonas, Steyer Mika"
+        },
+        "Footer": {
+            "Copyright": "Copyright © {{year}}",
+            "Version": "Version {{version}}"
+        }
+    }
+}
