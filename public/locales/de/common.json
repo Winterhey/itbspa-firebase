@@ -9,7 +9,8 @@
         },
         "Footer": {
             "Copyright": "Copyright © {{year}}",
-            "Version": "Version {{version}}"
+            "Version": "Version {{version}}",
+            "ByAuthor": "by {{author}}"
         }
     }
 }

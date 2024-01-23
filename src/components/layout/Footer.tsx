@@ -10,7 +10,13 @@ const Footer: FC = () => {
 
   return (
     <footer className="mx-2 mb-1 flex items-center justify-between text-sm">
-      <span> {t('Global.Footer.Copyright', { year: year })}</span>
+      <div>
+        <span> {t('Global.Footer.Copyright', { year })}</span>
+        <span>&nbsp;-&nbsp;</span>
+        <span>
+          {t('Global.Footer.ByAuthor', { author: t('Global.Meta.Author') })}
+        </span>
+      </div>
 
       <span>
         {t('Global.Footer.Version', {
