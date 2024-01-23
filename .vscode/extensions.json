@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "dsznajder.es7-react-js-snippets",
+    "mikestead.dotenv",
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "exodiusstudios.comment-anchors",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
