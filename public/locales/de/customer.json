@@ -1,0 +1,19 @@
+{
+    "Customer": {
+        "CustomerId": "Kundennummer",
+        "Email": "E-Mail",
+        "Firstname": "Vorname",
+        "HouseNumber": "Hausnummer",
+        "Lastname": "Name",
+        "PhoneNumber": "Telefonnummer",
+        "PostalCode": "PLZ",
+        "Street": "Straße",
+        "City": "Ort"
+    },
+    "Actions": {
+        "AddCustomer": "Kunden hinzufügen",
+        "EditCustomer": "Kunden bearbeiten",
+        "DeleteCustomer": "Kunden löschen",
+        "ViewCustomer": "Kunden anzeigen"
+    }
+}

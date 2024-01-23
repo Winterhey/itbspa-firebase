@@ -1,18 +1,33 @@
 import { type GetServerSideProps, type NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Index: NextPage = () => {
+import Card from '@/components/base/Card';
+import CustomerTable from '@/components/customer/CustomerTable';
+import axios from '@/libs/axios';
+import { type Customer } from '@/types/models/Customer';
+
+type Props = {
+  customer: Customer[];
+};
+
+const Index: NextPage<Props> = ({ customer }: Props) => {
   return (
-    <div>
-      <h1>Index</h1>
-    </div>
+    <Card>
+      <CustomerTable customers={customer} />
+    </Card>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const [customer, translations] = await Promise.all([
+    axios.get<Customer[]>('/customer'),
+    serverSideTranslations(locale || 'de', ['common', 'customer']),
+  ]);
+
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'de', ['common', 'customer'])),
+      customer: customer.data,
+      ...translations,
     },
   };
 };
