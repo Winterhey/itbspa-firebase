@@ -1,4 +1,5 @@
 {
+    "Subject": "Kunden",
     "Customer": {
         "CustomerId": "Kundennummer",
         "Email": "E-Mail",

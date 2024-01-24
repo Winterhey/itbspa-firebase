@@ -28,5 +28,46 @@
         "Validation": {
             "Required": "{{field}} ist ein Pflichtfeld."
         }
+    },
+    "Components": {
+        "Toast": {
+            "Create": {
+                "Detail": "{{subject}} wurde erfolgreich erstellt.",
+                "DetailWithCredentials": "{{subject}} {{credentials}} wurde erfolgreich erstellt.",
+                "Summary": "Erstellung erfolgreich."
+            },
+            "Delete": {
+                "Detail": "{{subject}} wurde erfolgreich gelöscht.",
+                "DetailWithCredentials": "{{subject}} {{credentials}} wurde erfolgreich gelöscht.",
+                "Summary": "Löschung erfolgreich."
+            },
+            "Error": {
+                "Detail": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+                "Summary": "Fehler!",
+                "SummaryWithError": "Fehler: {{message}}!"
+            },
+            "MissingFields": {
+                "Detail": "Ein oder mehrere Felder wurden nicht oder falsch befüllt.",
+                "Summary": "Warnung: Ungültige Felder."
+            },
+            "Retreat": {
+                "Detail": "Die von Ihnen abgebrochene Aktion wurde nicht ausgeführt.",
+                "Summary": "Aktion abgebrochen."
+            },
+            "Update": {
+                "Detail": "{{subject}} wurde erfolgreich aktualisiert.",
+                "DetailWithCredentials": "{{subject}} {{credentials}} wurde erfolgreich aktualisiert.",
+                "Summary": "Aktualisierung erfolgreich."
+            },
+            "Refresh": {
+                "Detail": "Die {{subject}} Daten wurden erneuert.",
+                "Summary": "Daten wurden erneut geladen."
+            },
+            "DeleteConfirmation": {
+                "Detail": "Möchten Sie den {{subject}} wirklich löschen?",
+                "DetailWithCredentials": "Möchten Sie den {{subject}} {{credentials}} wirklich löschen?",
+                "Summary": "Löschen bestätigen"
+            }
+        }
     }
 }
