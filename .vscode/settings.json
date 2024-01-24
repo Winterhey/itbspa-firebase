@@ -15,5 +15,13 @@
       "color": "#cd323255"
     }
   ],
-  "cSpell.words": ["BSPA", "datatable", "firestore", "itbspa", "primereact"]
+  "cSpell.words": [
+    "BSPA",
+    "datatable",
+    "firestore",
+    "inputtext",
+    "itbspa",
+    "primeicons",
+    "primereact"
+  ]
 }

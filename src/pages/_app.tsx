@@ -7,7 +7,8 @@ import Loader from '@/components/layout/Loader';
 import Provider from '@/context/Provider';
 import { type NextPage } from '@/types/layout';
 
-import 'primereact/resources/themes/lara-light-cyan/theme.css';
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/lara-light-amber/theme.css';
 
 import '@/styles/scss/globals.scss';
 
