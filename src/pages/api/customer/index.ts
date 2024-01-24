@@ -78,30 +78,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       }
       break;
 
-    // case 'PUT':
-    //   // Update to new syntax
-    //   try {
-    //     const { id, name } = JSON.parse(body);
-    //     await db.collection('items').doc(id).update({ name });
-    //     res.status(200).json({ id });
-    //   } catch (error) {
-    //     res.status(500).json({ error: 'Error updating item' });
-    //   }
-    //   break;
-
-    // case 'DELETE':
-    //   // Update to new syntax
-    //   try {
-    //     const { id } = JSON.parse(body);
-    //     await db.collection('items').doc(id).delete();
-    //     res.status(200).json({ id });
-    //   } catch (error) {
-    //     res.status(500).json({ error: 'Error deleting item' });
-    //   }
-    //   break;
-
     default:
-      res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
+      res.setHeader('Allow', ['GET', 'POST']);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 };
