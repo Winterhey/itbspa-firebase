@@ -12,5 +12,21 @@
             "Version": "Version {{version}}",
             "ByAuthor": "by {{author}}"
         }
+    },
+    "Actions": {
+        "Save": "Speichern",
+        "Create": "Erstellen",
+        "Retreat": "Abbrechen",
+        "Search": "Suchen",
+        "Yes": "Ja",
+        "No": "Nein"
+    },
+    "Form": {
+        "Placeholder": {
+            "Enter": "{{field}} eingeben ..."
+        },
+        "Validation": {
+            "Required": "{{field}} ist ein Pflichtfeld."
+        }
     }
 }

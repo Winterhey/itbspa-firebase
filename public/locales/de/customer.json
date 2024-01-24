@@ -15,5 +15,6 @@
         "EditCustomer": "Kunden bearbeiten",
         "DeleteCustomer": "Kunden löschen",
         "ViewCustomer": "Kunden anzeigen"
-    }
+    },
+    "NoCustomersFound": "Keine Kunden gefunden"
 }
