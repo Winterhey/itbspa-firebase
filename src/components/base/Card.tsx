@@ -1,5 +1,6 @@
-import { classNames } from 'primereact/utils';
 import { type FC, type PropsWithChildren } from 'react';
+
+import { cn } from '@/lib/utils';
 
 type Props = {
   className?: string | undefined;
@@ -13,7 +14,7 @@ const Card: FC<PropsWithChildren<Props>> = ({
 }) => {
   const baseClasses = 'bg-white m-6 shadow-sm rounded-lg relative';
 
-  const cardClass = classNames(baseClasses, className, {
+  const cardClass = cn(baseClasses, className, {
     'p-8': !noBody,
   });
 

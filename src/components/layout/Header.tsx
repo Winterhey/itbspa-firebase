@@ -1,10 +1,7 @@
 import { useTranslation } from 'next-i18next';
-import { Zen_Dots as ZenDots } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
-
-const zenDots = ZenDots({ subsets: ['latin'], weight: '400' });
 
 const DefaultHeader: FC = () => {
   const { t } = useTranslation();
@@ -23,9 +20,7 @@ const DefaultHeader: FC = () => {
             height={48}
             className="rounded-full"
           />
-          <span className="text-3xl font-semibold" style={zenDots.style}>
-            {t('Global.Name')}
-          </span>
+          <span className="text-3xl font-semibold">{t('Global.Name')}</span>
         </Link>
       </div>
     </header>

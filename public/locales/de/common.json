@@ -30,7 +30,16 @@
         }
     },
     "Components": {
+        "Table": {
+            "Actions": "Aktionen",
+            "OpenMenu": "Menü öffnen",
+            "NoData": "Keine Daten verfügbar.",
+            "Columns": "Spalten",
+            "PageOf": "Seite {{currentPage}} von {{pageCount}}",
+            "Search": "Suche"
+        },
         "Toast": {
+            "Close": "Schließen",
             "Create": {
                 "Detail": "{{subject}} wurde erfolgreich erstellt.",
                 "DetailWithCredentials": "{{subject}} {{credentials}} wurde erfolgreich erstellt.",

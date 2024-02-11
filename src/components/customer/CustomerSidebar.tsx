@@ -1,18 +1,25 @@
 import { useTranslation } from 'next-i18next';
-import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
-import { classNames } from 'primereact/utils';
-import { useState, type FC } from 'react';
+import { FC, useState } from 'react';
 import {
   Controller,
+  DefaultValues,
+  SubmitHandler,
   useForm,
-  type DefaultValues,
-  type SubmitHandler,
 } from 'react-hook-form';
 
-import Sidebar from '@/components/base/Sidebar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import ErrorDisplay from '@/components/utils/ErrorDisplay';
-import { type CustomerForm } from '@/types/forms/CustomerForm';
+import { useNotification } from '@/context/NotificationContext';
+import { cn } from '@/lib/utils';
+import { CustomerForm } from '@/types/forms/CustomerForm';
 
 type Props = {
   handleCustomerCreate: (customer: CustomerForm) => Promise<void>;
@@ -30,47 +37,41 @@ const defaultValuesFactory = (): DefaultValues<CustomerForm> => ({
   street: '',
 });
 
-const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
+const CustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
+  const [open, setOpen] = useState(false);
+
   const { t } = useTranslation(['customer', 'common']);
+  const { showMissingFields } = useNotification();
 
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  const { control, reset, handleSubmit } = useForm<CustomerForm>({});
+  const { control, reset, handleSubmit } = useForm<CustomerForm>({
+    defaultValues: defaultValuesFactory(),
+  });
 
   const onSubmit: SubmitHandler<CustomerForm> = async (formData) => {
-    handleCustomerCreate(formData);
+    console.log('formData', formData);
+    await handleCustomerCreate(formData);
 
-    reset(defaultValuesFactory());
-  };
-
-  const handleError = (error: unknown) => {
-    console.error(error);
-    alert(error);
+    handleRetreat();
   };
 
   const handleRetreat = () => {
     reset(defaultValuesFactory());
-    setIsVisible(false);
+    setOpen(false);
   };
 
   return (
-    <div>
-      <Button
-        type="button"
-        label={t('Actions.AddCustomer')}
-        icon="pi pi-users"
-        outlined
-        onClick={() => setIsVisible(true)}
-      />
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button variant="outline">{t('Actions.InsertCustomer')}</Button>
+      </SheetTrigger>
+      <SheetContent className="w-[540px]">
+        <SheetHeader>
+          <SheetTitle>{t('Actions.InsertCustomer')}</SheetTitle>
+        </SheetHeader>
 
-      <Sidebar
-        isVisible={isVisible}
-        onHide={() => setIsVisible(false)}
-        header={t('Actions.AddCustomer')}
-      >
         <form
-          onSubmit={handleSubmit(onSubmit, handleError)}
-          className="flex h-full flex-col gap-4 pb-4"
+          className="mt-2 flex flex-col gap-4 pb-4"
+          onSubmit={handleSubmit(onSubmit, showMissingFields)}
         >
           <div className="flex flex-1 flex-col gap-4">
             <Controller
@@ -86,7 +87,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.CustomerId')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -96,7 +97,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.CustomerId'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -119,7 +120,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.Lastname')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -129,7 +130,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.Lastname'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -152,7 +153,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.Firstname')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -162,7 +163,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.Firstname'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -180,7 +181,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.Email')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -190,7 +191,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.Email'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -208,7 +209,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.PhoneNumber')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -218,7 +219,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.PhoneNumber'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -236,7 +237,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.City')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -246,7 +247,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.City'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -264,7 +265,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.PostalCode')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -274,7 +275,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.PostalCode'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -292,7 +293,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.Street')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -302,7 +303,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.Street'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -320,7 +321,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                   <label htmlFor={field.name} className="mb-1 block">
                     {t('Customer.HouseNumber')}
                   </label>
-                  <InputText
+                  <Input
                     ref={field.ref}
                     id={field.name}
                     name={field.name}
@@ -330,7 +331,7 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
                     placeholder={t('common:Form.Placeholder.Enter', {
                       field: t('Customer.HouseNumber'),
                     })}
-                    className={classNames({
+                    className={cn({
                       'p-invalid': fieldState.error,
                       'w-full': true,
                     })}
@@ -341,21 +342,11 @@ const CreateCustomerSidebar: FC<Props> = ({ handleCustomerCreate }) => {
             />
           </div>
 
-          <div className="flex justify-between">
-            <Button label={t('common:Actions.Create')} className="mb-2 mt-1" />
-            <Button
-              type="button"
-              label={t('common:Actions.Retreat')}
-              className="mb-2 mt-1"
-              outlined
-              severity="secondary"
-              onClick={handleRetreat}
-            />
-          </div>
+          <Button type="submit">{t('common:Actions.Save')}</Button>
         </form>
-      </Sidebar>
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
-export default CreateCustomerSidebar;
+export default CustomerSidebar;

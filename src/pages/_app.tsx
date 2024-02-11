@@ -4,11 +4,9 @@ import { type FC } from 'react';
 
 import Layout from '@/components/layout/Layout';
 import Loader from '@/components/layout/Loader';
+import { Toaster } from '@/components/ui/sonner';
 import Provider from '@/context/Provider';
 import { type NextPage } from '@/types/layout';
-
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/lara-light-amber/theme.css';
 
 import '@/styles/scss/globals.scss';
 
@@ -19,6 +17,7 @@ type Props = AppProps & {
 const App: FC<Props> = ({ Component, pageProps, router }) => {
   return (
     <>
+      <Toaster />
       <Provider>
         {Component.getLayout ? (
           <Loader>

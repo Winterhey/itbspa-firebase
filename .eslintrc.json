@@ -20,6 +20,7 @@
         "fixStyle": "inline-type-imports"
       }
     ],
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react/prop-types": "off"
   }
 }

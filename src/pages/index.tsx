@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import Card from '@/components/base/Card';
-import CreateCustomerSidebar from '@/components/customer/CreateCustomerSidebar';
-import CustomerTable from '@/components/customer/CustomerTable';
+import CustomerSidebar from '@/components/customer/CustomerSidebar';
+import CustomerTable from '@/components/customer/table/CustomerTable';
 import { useNotification } from '@/context/NotificationContext';
-import axios from '@/libs/axios';
+import axios from '@/lib/axios';
 import { type CustomerForm } from '@/types/forms/CustomerForm';
 import { type Customer } from '@/types/models/Customer';
 
@@ -23,7 +23,6 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
     showRefreshed,
     showSubjectCreated,
     showErrorToast,
-    showDeleteConfirmation,
     showSubjectDeleted,
   } = useNotification();
 
@@ -49,25 +48,19 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
   };
 
   const handleCustomerDelete = async (customer: Customer) => {
-    showDeleteConfirmation(
-      t('Subject'),
-      async () => {
-        try {
-          await axios.delete(`/customer/${customer.id}`);
+    try {
+      await axios.delete(`/customer/${customer.id}`);
 
-          showSubjectDeleted(
-            t('Subject'),
-            `${customer.firstname} ${customer.lastname}`,
-          );
+      showSubjectDeleted(
+        t('Subject'),
+        `${customer.firstname} ${customer.lastname}`,
+      );
 
-          setCustomers((x) => x.filter((c) => c.id !== customer.id));
-        } catch (error) {
-          console.error(error);
-          showErrorToast();
-        }
-      },
-      `${customer.firstname} ${customer.lastname}`,
-    );
+      setCustomers((x) => x.filter((c) => c.id !== customer.id));
+    } catch (error) {
+      console.error(error);
+      showErrorToast();
+    }
   };
 
   const handleCustomerView = async (customer: Customer) => {
@@ -85,10 +78,16 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
     }
   };
 
+  const handleCustomerCopy = async (customer: Customer) => {
+    const copyText = `${customer.firstname} ${customer.lastname} <${customer.email}>`;
+
+    await navigator.clipboard.writeText(copyText);
+  };
+
   return (
     <Card>
       <div className="mb-4">
-        <CreateCustomerSidebar handleCustomerCreate={handleCustomerCreate} />
+        <CustomerSidebar handleCustomerCreate={handleCustomerCreate} />
       </div>
       <CustomerTable
         customers={customers}
@@ -96,6 +95,7 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
         handleCustomerUpdate={handleCustomerUpdate}
         handleCustomerDelete={handleCustomerDelete}
         handleCustomerRefresh={handleCustomerRefresh}
+        handleCustomerCopy={handleCustomerCopy}
       />
     </Card>
   );

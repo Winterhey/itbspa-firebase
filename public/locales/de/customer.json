@@ -11,11 +11,15 @@
         "Street": "Straße",
         "City": "Ort"
     },
+    "VirtualFields": {
+        "Address": "Adresse"
+    },
     "Actions": {
-        "AddCustomer": "Kunden hinzufügen",
-        "EditCustomer": "Kunden bearbeiten",
+        "InsertCustomer": "Kunden hinzufügen",
+        "UpdateCustomer": "Kunden bearbeiten",
         "DeleteCustomer": "Kunden löschen",
-        "ViewCustomer": "Kunden anzeigen"
+        "ViewCustomer": "Kunden anzeigen",
+        "CopyCustomerData": "Kundendaten kopieren"
     },
     "NoCustomersFound": "Keine Kunden gefunden"
 }
