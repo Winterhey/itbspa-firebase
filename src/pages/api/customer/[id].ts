@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
         const data = docSnap.data();
 
-        res.status(501).send({
+        res.status(200).send({
           id: docSnap.id,
           customerNumber: data.kd_KundenID,
           email: data.kd_EMail,
@@ -64,6 +64,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           kd_Telefon: payload.phoneNumber,
           kd_Name: payload.lastname,
         });
+
+        res.status(200).json({ message: 'Customer updated.' });
       } catch (error) {
         res.status(500).json({ message: 'Error getting items', error });
       }
