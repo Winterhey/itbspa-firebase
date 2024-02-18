@@ -114,7 +114,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
         ...translations,
       },
     };
-  } catch {
+  } catch (error) {
+    console.error(error);
     return {
       props: {
         initialCustomers: [],
