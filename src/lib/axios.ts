@@ -1,7 +1,7 @@
 import axiosIns from 'axios';
 
 const axios = axiosIns.create({
-  baseURL: (process.env.VERCEL_URL || '') + `/api/`,
+  baseURL: `/api/`,
 });
 
 export default axios;
