@@ -102,17 +102,29 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const [customers, translations] = await Promise.all([
-    axios.get<Customer[]>('customer'),
-    serverSideTranslations(locale || 'de', ['common', 'customer']),
-  ]);
+  try {
+    const [customers, translations] = await Promise.all([
+      axios.get<Customer[]>('customer'),
+      serverSideTranslations(locale || 'de', ['common', 'customer']),
+    ]);
 
-  return {
-    props: {
-      initialCustomers: customers.data,
-      ...translations,
-    },
-  };
+    return {
+      props: {
+        initialCustomers: customers.data,
+        ...translations,
+      },
+    };
+  } catch {
+    return {
+      props: {
+        initialCustomers: [],
+        ...(await serverSideTranslations(locale || 'de', [
+          'common',
+          'customer',
+        ])),
+      },
+    };
+  }
 };
 
 export default Index;
