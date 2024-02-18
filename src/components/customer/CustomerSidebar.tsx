@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import {
   Controller,
-  DefaultValues,
-  SubmitHandler,
+  type DefaultValues,
+  type SubmitHandler,
   useForm,
 } from 'react-hook-form';
 
@@ -19,7 +19,7 @@ import {
 import ErrorDisplay from '@/components/utils/ErrorDisplay';
 import { useNotification } from '@/context/NotificationContext';
 import { cn } from '@/lib/utils';
-import { CustomerForm } from '@/types/forms/CustomerForm';
+import { type CustomerForm } from '@/types/forms/CustomerForm';
 
 type Props = {
   handleCustomerCreate: (customer: CustomerForm) => Promise<void>;

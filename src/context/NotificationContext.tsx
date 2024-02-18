@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { createContext, useContext, type PropsWithChildren } from 'react';
-import { ExternalToast, toast } from 'sonner';
+import { type ExternalToast, toast } from 'sonner';
 
 type ShowToast = (
   summary: string,

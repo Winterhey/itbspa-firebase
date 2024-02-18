@@ -1,4 +1,3 @@
-import { rankItem } from '@tanstack/match-sorter-utils';
 import {
   flexRender,
   getCoreRowModel,
@@ -8,7 +7,6 @@ import {
   useReactTable,
   type ColumnDef,
   type ColumnFiltersState,
-  type FilterFn,
   type SortingState,
   type VisibilityState,
 } from '@tanstack/react-table';
@@ -16,7 +14,7 @@ import { ArrowUpDown, RefreshCw } from 'lucide-react';
 import { useTranslation } from 'next-i18next';
 import { useState, type FC } from 'react';
 
-import TableColumns from '@/components/base/table/TableColumns';
+import { default as TableColumns } from '@/components/base/table/TableColumns';
 import TablePagination from '@/components/base/table/TablePagination';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,7 +28,7 @@ import {
 } from '@/components/ui/table';
 import { type Customer } from '@/types/models/Customer';
 
-import CustomerActions from './CustomerActions';
+import { default as CustomerActions } from './CustomerActions';
 
 type Props = {
   customers: Customer[];
@@ -202,7 +200,7 @@ const CustomerTable: FC<Props> = ({
         <div className="flex items-center gap-4">
           <RefreshCw
             onClick={handleCustomerRefresh}
-            className="hover:text-firebase-amber cursor-pointer transition-colors"
+            className="cursor-pointer transition-colors hover:text-firebase-amber"
           />
           <TableColumns table={table} />
         </div>

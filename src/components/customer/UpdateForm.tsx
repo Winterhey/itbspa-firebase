@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
-import React, { FC } from 'react';
+import { type FC } from 'react';
 import { Col, Row } from 'react-grid-system';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,8 +9,8 @@ import ErrorDisplay from '@/components/utils/ErrorDisplay';
 import { useNotification } from '@/context/NotificationContext';
 import axios from '@/lib/axios';
 import { cn } from '@/lib/utils';
-import { CustomerForm } from '@/types/forms/CustomerForm';
-import { Customer } from '@/types/models/Customer';
+import { type CustomerForm } from '@/types/forms/CustomerForm';
+import { type Customer } from '@/types/models/Customer';
 import { useRouter } from 'next/router';
 
 type Props = {
