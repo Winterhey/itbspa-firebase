@@ -30,7 +30,7 @@ const UpdateForm: FC<Props> = ({ customer, disabled = false }) => {
 
   const onSubmit: SubmitHandler<CustomerForm> = async (formData) => {
     try {
-      await axios.put<{ id: string }>(`/customer/${customer.id}`, formData);
+      await axios.put<{ id: string }>(`customer/${customer.id}`, formData);
 
       showSubjectUpdated(
         t('Subject'),

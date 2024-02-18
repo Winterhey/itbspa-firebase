@@ -30,7 +30,7 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
 
   const handleCustomerCreate = async (customer: CustomerForm) => {
     try {
-      const { data } = await axios.post<{ id: string }>('/customer', customer);
+      const { data } = await axios.post<{ id: string }>('customer', customer);
 
       showSubjectCreated(
         t('Subject'),
@@ -49,7 +49,7 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
 
   const handleCustomerDelete = async (customer: Customer) => {
     try {
-      await axios.delete(`/customer/${customer.id}`);
+      await axios.delete(`customer/${customer.id}`);
 
       showSubjectDeleted(
         t('Subject'),
@@ -102,6 +102,10 @@ const Index: NextPage<Props> = ({ initialCustomers }: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  console.log('url ', process.env.VERCEL_URL);
+  console.log('api root ', process.env.API_ROOT);
+  console.log('env ', process.env);
+
   try {
     const [customers, translations] = await Promise.all([
       axios.get<Customer[]>('customer'),
